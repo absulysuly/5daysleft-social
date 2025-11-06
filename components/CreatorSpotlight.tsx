@@ -84,11 +84,11 @@ export default function CreatorSpotlight() {
       <button
         onClick={generateSpotlight}
         disabled={isLoading}
-        className="absolute right-6 top-6 rounded-full p-2 text-brand-foreground/70 transition-colors hover:bg-brand/20 hover:text-brand-foreground disabled:cursor-not-allowed disabled:opacity-50"
+        className="absolute right-6 top-6 rounded-full p-2 text-brand-foreground/70 transition-colors hover:bg-brand/20 hover:text-brand-foreground disabled:cursor-not-allowed disabled:opacity-50 disabled:animate-pulse-subtle"
         aria-label={isLoading ? "Generating new creator spotlight" : "Generate new creator spotlight"}
         aria-busy={isLoading}
       >
-        <SparklesIcon className={`h-5 w-5 ${isLoading ? 'animate-spin' : ''}`} />
+        <SparklesIcon className="h-5 w-5" />
       </button>
     </section>
   );
