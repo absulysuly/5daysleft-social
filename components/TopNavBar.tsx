@@ -22,8 +22,16 @@ const navigationLinks = [
   { label: "Blog", href: "/blog" },
 ] satisfies ReadonlyArray<NavigationLink>;
 
+function normalizePathname(path: string): string {
+  if (path === "/") {
+    return path;
+  }
+
+  return path.replace(/\/+$/, "");
+}
+
 export default function TopNavBar(): JSX.Element {
-  const pathname = usePathname() ?? "/";
+  const pathname = normalizePathname(usePathname() ?? "/");
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center bg-neutral-950/60 backdrop-blur-md">
@@ -36,7 +44,9 @@ export default function TopNavBar(): JSX.Element {
         </Link>
         <ul className="hidden items-center gap-1 rounded-full border border-neutral-800 bg-neutral-900/60 p-1 text-sm text-neutral-300 shadow-lg shadow-black/10 md:flex">
           {navigationLinks.map(({ href, label, exact }) => {
-            const isActive = exact ? pathname === href : pathname.startsWith(href);
+            const isActive = exact
+              ? pathname === href
+              : pathname === href || pathname.startsWith(`${href}/`);
 
             return (
               <li key={href}>
