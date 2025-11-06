@@ -27,6 +27,7 @@ function normalizePathname(path: string): string {
   if (path === "/") {
     return path;
   }
+<<<<<<< HEAD
 
   return path.replace(/\/+$/, "");
 }
@@ -37,6 +38,14 @@ export default function TopNavBar(): JSX.Element {
     () => normalizePathname(pathnameValue ?? "/"),
     [pathnameValue],
   );
+=======
+  return path.replace(/\/+$/, "");
+}
+
+export default function TopNavBar() {
+  const rawPathname = usePathname() ?? "/";
+  const pathname = useMemo(() => normalizePathname(rawPathname), [rawPathname]);
+>>>>>>> prorigin/main
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center bg-neutral-950/60 backdrop-blur-md">
@@ -80,4 +89,8 @@ export default function TopNavBar(): JSX.Element {
       </nav>
     </header>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> prorigin/main

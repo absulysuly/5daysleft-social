@@ -1,5 +1,6 @@
 const CLASS_SEPARATOR = /\s+/g;
 
+<<<<<<< HEAD
 type ClassValue =
   | string
   | number
@@ -51,4 +52,8 @@ export function cn(...inputs: ClassValue[]): string {
   }
 
   return tokens.join(" ");
+=======
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(...inputs));
+>>>>>>> prorigin/main
 }

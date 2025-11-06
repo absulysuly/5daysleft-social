@@ -1,4 +1,6 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import CountdownTimer from "@/components/CountdownTimer";
 
 import CreatorSpotlight from "@/components/CreatorSpotlight";
 
@@ -20,11 +22,24 @@ const launchMilestones = [
   },
 ];
 
+const CreatorSpotlight = dynamic(() => import("@/components/CreatorSpotlight"), {
+  loading: () => (
+    <section className="relative flex flex-col gap-4 rounded-3xl border border-dashed border-brand/40 bg-brand/5 p-8 text-neutral-200">
+      <h2 className="text-2xl font-semibold text-brand-foreground">Creator spotlight</h2>
+      <div className="flex min-h-[100px] flex-col justify-center">
+        <p className="animate-pulse text-sm text-neutral-300">Generating inspiration...</p>
+      </div>
+    </section>
+  ),
+  ssr: false,
+});
+
+
 export default function Home() {
   return (
     <div className="flex flex-col gap-12">
-      <header className="flex flex-col gap-4 text-balance">
-        <p className="text-sm uppercase tracking-[0.35em] text-brand-foreground/75">Countdown</p>
+      <header className="flex flex-col items-center gap-6 text-balance text-center">
+        <CountdownTimer />
         <h1 className="text-4xl font-semibold sm:text-5xl">
           We are days away from elevating the creator community.
         </h1>
@@ -32,7 +47,7 @@ export default function Home() {
           Track the final touches as we race toward launch. We’re building a space for
           creators to share progress, celebrate milestones, and stay inspired.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/join"
             className="rounded-full bg-brand px-6 py-2 text-sm font-medium text-brand-foreground shadow-lg shadow-brand/30 transition hover:bg-brand/90"
