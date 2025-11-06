@@ -2,8 +2,6 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import CountdownTimer from "@/components/CountdownTimer";
 
-import CreatorSpotlight from "@/components/CreatorSpotlight";
-
 const launchMilestones = [
   {
     title: "Design Sprint",
