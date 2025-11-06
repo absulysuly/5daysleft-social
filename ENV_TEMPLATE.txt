@@ -1,0 +1,12 @@
+# Frontend Environment Configuration
+# Copy this content to a file named .env.local in the frontend directory
+
+VITE_API_URL=http://localhost:4001
+NEXT_PUBLIC_API_URL=http://localhost:4001
+NODE_ENV=development
+
+# For Production (Vercel):
+# VITE_API_URL=https://iraq-election-backend.onrender.com
+# NEXT_PUBLIC_API_URL=https://iraq-election-backend.onrender.com
+# NODE_ENV=production
+
