@@ -2,16 +2,27 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import { cn } from "@/lib/utils";
 
-const navigationLinks = [
-  { label: "Home", href: "/" },
+type NavigationLink = {
+  href: string;
+  label: string;
+  /**
+   * Some routes like the home page should only match exactly.
+   * This flag prevents prefix matching from highlighting the wrong tab.
+   */
+  exact?: boolean;
+};
+
+const navigationLinks: ReadonlyArray<NavigationLink> = [
+  { label: "Home", href: "/", exact: true },
   { label: "Roadmap", href: "/roadmap" },
   { label: "Community", href: "/community" },
   { label: "Blog", href: "/blog" },
 ];
 
-export default function TopNavBar() {
+const TopNavBar = () => {
   const pathname = usePathname();
 
   return (
@@ -24,21 +35,22 @@ export default function TopNavBar() {
           5DaysLeft
         </Link>
         <ul className="hidden items-center gap-1 rounded-full border border-neutral-800 bg-neutral-900/60 p-1 text-sm text-neutral-300 shadow-lg shadow-black/10 md:flex">
-          {navigationLinks.map((link) => {
-            const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+          {navigationLinks.map(({ href, label, exact }) => {
+            const isActive = exact ? pathname === href : pathname.startsWith(href);
 
             return (
-              <li key={link.href}>
+              <li key={href}>
                 <Link
-                  href={link.href}
+                  href={href}
                   className={cn(
                     "rounded-full px-4 py-2 transition",
                     isActive
                       ? "bg-brand text-brand-foreground shadow-inner shadow-black/30"
                       : "hover:bg-neutral-800/80 hover:text-neutral-100"
                   )}
+                  aria-current={isActive ? "page" : undefined}
                 >
-                  {link.label}
+                  {label}
                 </Link>
               </li>
             );
@@ -53,4 +65,6 @@ export default function TopNavBar() {
       </nav>
     </header>
   );
-}
+};
+
+export default TopNavBar;
