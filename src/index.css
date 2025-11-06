@@ -1,0 +1,203 @@
+/* Reset and Global Styles */
+:root {
+  --background-color: #121212;
+  --surface-color: #1e1e1e;
+  --primary-color: #f57c00; /* Orange */
+  --primary-color-hover: #e65100; /* Darker Orange */
+  --secondary-color: #ffb74d; /* Light Orange */
+  --text-color: #e0e0e0;
+  --text-muted-color: #a0a0a0;
+  --border-color: #333;
+  --error-color: #dc3545;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* App Layout */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.app-header {
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  font-size: 2.8rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.app-header p {
+  color: var(--text-muted-color);
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+main > section {
+    margin-bottom: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Project Stats Section */
+.stats-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: var(--surface-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card .stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 0.5rem 0;
+}
+
+.stat-card .stat-label {
+  margin: 0;
+  color: var(--text-muted-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Gemini AI Section */
+.gemini-query-container {
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.gemini-query-container h2 {
+    margin-top: 0;
+}
+
+.gemini-query-container p {
+    color: var(--text-muted-color);
+    margin-bottom: 1.5rem;
+}
+
+.gemini-query-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.gemini-query-container textarea {
+    font-family: var(--font-family);
+    font-size: 1rem;
+    padding: 0.75rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.gemini-query-container textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.25);
+}
+
+.gemini-query-container button {
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    align-self: flex-end;
+}
+
+.gemini-query-container button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.gemini-query-container button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+.gemini-response {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.gemini-response h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+}
+
+.gemini-response p {
+    margin: 0;
+    color: var(--text-color);
+    white-space: pre-wrap; /* To preserve formatting from AI response */
+}
+
+/* Utility */
+.error-message {
+  color: var(--error-color);
+  font-weight: 500;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted-color);
+}
