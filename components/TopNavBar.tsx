@@ -15,15 +15,15 @@ type NavigationLink = {
   exact?: boolean;
 };
 
-const navigationLinks: ReadonlyArray<NavigationLink> = [
+const navigationLinks = [
   { label: "Home", href: "/", exact: true },
   { label: "Roadmap", href: "/roadmap" },
   { label: "Community", href: "/community" },
   { label: "Blog", href: "/blog" },
-];
+] satisfies ReadonlyArray<NavigationLink>;
 
 export default function TopNavBar(): JSX.Element {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center bg-neutral-950/60 backdrop-blur-md">
