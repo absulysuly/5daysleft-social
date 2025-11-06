@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -31,7 +32,11 @@ function normalizePathname(path: string): string {
 }
 
 export default function TopNavBar(): JSX.Element {
-  const pathname = normalizePathname(usePathname() ?? "/");
+  const pathnameValue = usePathname();
+  const pathname = useMemo(
+    () => normalizePathname(pathnameValue ?? "/"),
+    [pathnameValue],
+  );
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center bg-neutral-950/60 backdrop-blur-md">
