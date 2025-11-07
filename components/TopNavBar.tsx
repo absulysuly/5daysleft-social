@@ -1,4 +1,3 @@
-import React from 'react';
 import { Language } from '../types';
 import { UI_TEXT } from '../translations';
 
@@ -9,24 +8,23 @@ interface TopNavBarProps<T extends string> {
     language: Language;
 }
 
-const tabTranslationKeys: { [key: string]: keyof (typeof UI_TEXT)['en'] } = {
-    'Feed': 'feed',
-    'Real': 'real',
-    'Candidates': 'candidates',
-    'Whisper': 'whisper',
-    'Women': 'women',
-    'Minorities': 'minorities',
-    'Components': 'components',
+const tabTranslationKeys: Record<string, keyof (typeof UI_TEXT)['en']> = {
+    Feed: 'feed',
+    Real: 'real',
+    Candidates: 'candidates',
+    Whisper: 'whisper',
+    Women: 'women',
+    Minorities: 'minorities',
+    Components: 'components',
     'Polling Center': 'pollingCenter',
-    'TeaHouse': 'teaHouse',
-    'Events': 'events',
-    'Articles': 'articles',
-    'Debates': 'debates',
+    TeaHouse: 'teaHouse',
+    Events: 'events',
+    Articles: 'articles',
+    Debates: 'debates',
     'Ask Neighbor': 'askNeighbor',
 };
 
-
-function TopNavBar<T extends string>({ tabs, activeTab, onTabChange, language }: TopNavBarProps<T>) {
+const TopNavBar = <T extends string>({ tabs, activeTab, onTabChange, language }: TopNavBarProps<T>) => {
     const texts = UI_TEXT[language];
     const navBarClasses = 'border-b border-[var(--color-glass-border)] top-nav-bar';
 
@@ -39,12 +37,13 @@ function TopNavBar<T extends string>({ tabs, activeTab, onTabChange, language }:
 
     return (
         <div className={navBarClasses}>
-            <nav className="flex space-x-6 rtl:space-x-reverse px-4 sm:px-6 overflow-x-auto no-scrollbar -mb-px" aria-label="Tabs">
+            <nav
+                className="flex space-x-6 rtl:space-x-reverse px-4 sm:px-6 overflow-x-auto no-scrollbar -mb-px"
+                aria-label="Tabs"
+            >
                 {tabs.map((tab) => {
                     const translationKey = tabTranslationKeys[tab];
-                    // FIX: TypeScript infers the type of `texts[translationKey]` too broadly. Cast to string
-                    // because we know that all values in `tabTranslationKeys` map to string properties.
-                    const label = translationKey ? texts[translationKey] as string : tab;
+                    const label = translationKey ? (texts[translationKey] as string) : tab;
 
                     return (
                         <button
